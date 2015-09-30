@@ -1,0 +1,25 @@
+.fancy-header {
+	color: blue;
+	text-decoration: underline;
+}
+
+body{
+	background-color: papayawhip;
+}
+
+main {
+	background-color: salmon;
+}
+
+#wrapper {
+	background-color: gray;
+	max-width: 500px;
+}
+
+.languages {
+	color: red;
+}
+
+.header {
+	
+}

@@ -1,0 +1,38 @@
+body {
+	background-color: pink;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+	float: left;
+}
+
+a {
+	display: block;
+	width: 90px;
+	background-color: grey;
+	border: 1px solid black;
+}
+
+a:link {
+	text-decoration: none;
+
+}
+
+a:visited {
+	color: blue;
+}
+
+a:active {
+
+}
+
+a:hover {
+	background-color: papayawhip;
+
+}

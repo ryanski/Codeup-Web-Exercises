@@ -1,0 +1,62 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+main {
+	width: 1200px;
+	background-color: blue;
+}
+
+div {/*little container*/
+	width: 130px;
+	height: 130px;
+	margin: 0px;
+	position: relative;
+	float: left;
+
+}
+
+main div div {/*color box*/
+	background-color: red;
+	width: 50px;
+	padding: 10px;
+	border: 1px solid black;
+	height: 50px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	color: white;
+
+}
+
+img {
+	float: right;
+
+}
+
+main>div:nth-child(4){
+	clear: both
+}
+
+.orange {
+	background-color: orange;
+
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.green {
+	background-color: green;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.purple {
+	background-color: purple;
+}
+

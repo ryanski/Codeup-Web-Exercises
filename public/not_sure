@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"
+		<title>Hello Hampton!</title>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h1>Hi :D</h1>
+				<hr>
+				<h2>Header 2</h2>
+				<hr>
+				<h3>Header 3</h3>
+				<hr>
+			</section>
+			<br>
+			<section>
+				<p>This is <span>content</span> inside of a paragraph element</p>
+				<p>This is another paragraph inside another paragraph</p>
+				<p>This is inline<a href="#" title="">This is a link</a></p>
+				</section>
+				<footer>This is a footer
+				</footer>
+		</main>
+	</body>
+</html>
