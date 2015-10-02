@@ -1,0 +1,53 @@
+/*.circle {
+			border-radius: 50%;
+			display: inline-block;
+			margin-right: 20px; when i change pixels
+			or delete this line, nothing happens.  WHy? 
+			Also border at 100% looks the same as at 50%
+			background: url(img/ice_cold_beer.jpg) no-repeat;
+			border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+			height: 500px;
+			width: 500px;
+		}
+
+div {
+    min-width: 500px;
+   
+	}
+
+
+.circle {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	webkit-border-radius: 150px;
+	moz-border-radius: 150px;
+	background: url(img/ice_cold_beer.jpg) no-repeat;
+	}
+
+
+
+.circle {
+	margin: auto;
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(http://images.bigoven.com/image/upload/v1419051694/ice-cold-beer-2.jpg) no-repeat;
+	}
+
+.circle img {
+	position: center;
+	left: 200px;
+
+}*/
+
+.img-circle {
+    border-radius: 50%;
+    max-width: 700px;
+	max-height: 700px;
+	}
+
