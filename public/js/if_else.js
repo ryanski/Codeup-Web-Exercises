@@ -15,6 +15,11 @@ var favorite = 'red'; // TODO: change this to your favorite color from the list
 // TODO: Using the ternary operator, conditionally log a statement that
 //       says whether the random color matches your favorite color.
 var favorite = "yellow";
+var message;
+
+console.log('Random color is ' + color);
+console.log('My favorite color is ' + favorite);
+
 if(color =='red') {
 	message="Red is the color of Mars"; 
 }
@@ -32,9 +37,7 @@ else if (color=='blue') {
 }
 else {
 
-
-
-	(message="I don't anything about this color")
+	message="I don't anything about this color";
 }
 
 console.log(message)
@@ -42,6 +45,8 @@ console.log(message)
 var message = (color==favorite) ? "This is my favorite color": "This is not my favorite color";
 
 console.log(message)
+
+
 //use for if else and true or false only.  won't work otherwise.	var message=(color==='red') ? "Red is the color of Mars" : "Oops wrong color";
 
 

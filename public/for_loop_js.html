@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Bottles of Root Beer</h1>
+<script>
+// 		for (var i=100; i>=5; i=i-5) {
+// 			console.log('for loop iteration #'+i);
+// }
+// 		for (var i=100; i>=5; i=i-5) {
+// 			console.log(i);
+// }
+//if there are any beers
+//n "bottles of beer on wall.. take down and pass it around"
+//if there is only one beer
+//"1 bottle of beer on the wall"
+//if there are no bottles
+//"someone needs to go to the store"
+
+for (var number=99; number>=1; number-=1) {
+
+	if(number>1){
+ 	console.log(number+' bottles of beer on the wall.  Take one down and pass it around,');
+  } else {
+ 	console.log(number+' bottles of beer on the wall.  Take it down and pass it around,')
+  }
+
+}
+console.log('No bottles of beer.  Someone go to the store.')
+ console.log(number);
+
+		for (var j=9; j<=11; j++) {
+			for (var x=0; x<=10; x++) {
+				console.log(x*j);
+			}
+		}
+ var number =99;
+
+ while(number >= 1) {
+ 	
+
+ 	if(number ==1){
+ 		console.log(number + ' bottle of beer on the wall.  Take it down and pass it around.');
+ 	} else {	
+ 		console.log(number + ' bottles of beer on the wall.  Take on down, pass it around.');
+ 	//number=number -1;
+ 	}
+
+ 	number-=1;
+ 	}
+
+ console.log('No bottles of beer.  Someone go to the store.')
+ console.log(number);
+ 
+ "use strict"
+do {
+	var random=Math.floor((Math.random()*50)+1);
+
+	if(random%2 !==0) {
+		console.log(random + ' is odd');
+		break;
+	} 
+	console.log(random + ' was even.  Generating a new random number.');
+} while (random %2==0);
+
+for(var i =1; i<50; i+=2) {
+	if (i==random) {
+	console.log('Yikes!  Skipping number: '+random);
+	continue;
+}
+	console.log("Here is an odd number: " + i)
+}
+
+</script>
+</body>
+</html>
