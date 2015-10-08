@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		var random=Math.floor((Math.random*20)+1);
+		var turns=0;
+		do {
+			turns++
+		
+		var response=prompt('What number do you guess between 1 thru 20?')
+		if (parseInt(response)) {
+			if  (response>random)
+				alert('You were to high!');
+				 else {
+					if(response<random) {
+				alert('You were to low!');
+				}
+			}
+			} else {
+			alert('Please use a number.');
+	
+			} while (response != random, turns !=7);
+			if(turns == 7) {
+				var lost = confirm('You lose! Would you like to play again?')
+				continue;
+			}
+				if (response == random) {
+				var confirmed = confirm('Congratulations!  You won!  Would you like to play again?')
+			}
+		} while (confirmed || lost);
+		 
+		  
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// var random=Math.floor((Math.random*10)+1);
+		// var response = prompt('What number do you guess between 1 thru 10?');
+		// var guesses =5;
+
+		// if(guesses !=5 || guesses<=5 || guesses===guesses-1) {
+		// 	if(guesses ==1) {
+		// 		response=prompt('One more try!');
+		// 	} else {
+		// 		response=prompt('Try again! '+ guesses +' trys left!');
+		// 	}
+		// 	guesses--;
+		// }
+		// if (response== random) {
+		// 	alert('Lucky guess! You win!');
+		// } else {
+		// 	alert('You lose!');
+		// }
+		
+		// var response =prompt('Would you like to play again?');
+
+	</script>
+
+</body>
+</html>

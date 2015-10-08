@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		function areaofRectangle(length, width) {
+			var R_area =length*width;
+			return R_area;
+		}
+
+		var rectangleArea=
+			areaofRectangle(15,8);
+		console.log(rectangleArea);
+
+		function areaofTriangle(length, width) {
+			var T_area =(length*width)/2;
+			return T_area;
+		}
+
+		var triangleArea=
+			areaofTriangle(9,8);
+		console.log(triangleArea);
+
+
+
+		function areaofNewshape(height, width, width2) {
+			var N_area =(height*width)-((height*width2)/2);
+			return N_area;
+		}
+
+		
+		var newArea=
+			areaofNewshape(8,15,9);
+		console.log(newArea);
+
+		function areaofCircle(radius) {
+		var C_area=Math.pi*(radius*radius);
+		return C_area;
+
+		}
+
+		var circleArea=
+			areaofCircle(3);
+			console.log(circleArea);
+
+
+	</script>
+
+</body>
+</html>

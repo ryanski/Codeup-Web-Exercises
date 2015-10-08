@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		// var whatAmI = "I am a string.";
+		// if (typeof whatAmI === "boolean") {
+		//     console.log("You are a boolean.");
+		// } else if (typeof whatAmI === "number") {
+		//     console.log("You are a number.");
+		// } else if (typeof whatAmI === "string") {
+		//     console.log("You are a string.");
+		// } else if (typeof whatAmI === "function" || typeof whatAmI === "object") {
+		//     console.log("You are an object.");
+		// } else if (typeof whatAmI === "undefined") {
+		//     console.log("You are undefined.");
+		// } else {
+		//     console.log("I have no clue.");
+		// }
+
+		// var whatAmI= "I am a string.";
+		// switch(typeof whatAmI) {
+		// 	case "boolean":
+		// 	console.log("You are a boolean.");
+		// 	break;
+		// 	case "number":
+		// 	console.log("You are a number.");
+		// 	break;
+		// 	case "string":
+		// 	console.log("You are a string.")
+		// 	break;
+		// 	default:
+		// 	console.log("I have no clue.")
+		//}
+				// ignore these lines for now
+		// just know that the variable 'color' will end up with a random value from the colors array
+		var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+		var color = colors[Math.floor(Math.random()*colors.length)];
+
+		switch (color) {
+			case "red":
+			console.log("Red is the color of Mercury.");
+			break;
+			case "orange":
+			console.log("Orange is the mixing of yellow and red.");
+			break;
+			case "yellow":
+			console.log("Yellow is the color of sunflowers.")
+			break;
+			case "green":
+			console.log("Greeen is the color of leaves.")
+			break;
+			case "blue":
+			console.log("Blue is the color of my bedsheet.")
+			default:
+			console.log("I do not know anything about that color.")
+
+		    // todo: create a case statement that will handle every color except indigo and violet
+		    // todo: when a color is encountered log a message that tells the color, and an object of that color
+		    //       example: Blue is the color of the sky.
+
+		    // todo: create a default case that will catch indigo and violet
+		    // todo: for the default case, log: I do not know anything by that color.
+		}
+	</script>
+
+</body>
+</html>

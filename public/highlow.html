@@ -1,0 +1,87 @@
+<DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+
+		function getRandomNumber(){
+			var rand=Math.floor((Math.random()*50)+1);
+			return rand;
+		}
+
+		function playAgain() {
+			var answer = confirm('Do you want to play again?');
+			return answer;
+		}
+
+		function getGuess() {
+			var guess = prompt('Please enter your guess between 1 and 50');
+			return guess;
+		}
+
+		function isValidGuess(guess) {
+			var parsedGuess=parseInt(guess);
+
+			//If parsedGuess is Not a NUmber, then return false;
+			if(isNaN(parsedGuess)) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	function getValidGuess() {
+		do {
+			var guess= getGuess();
+
+		} while(isValidGuess(guess)== false);	
+		return guess;
+		}
+
+	function playGame() {
+		var random =getRandomNumber();
+		console.log(random);
+
+		var i = 0;
+		do {
+
+			var guess =getValidGuess();
+
+			if(guess== random) {
+				alert('You did it!');
+			} else if(guess>random) {
+				alert('Too High!');
+			} else if(guess<random) {
+				alert('Too Low!');
+			
+			}
+
+			i += 1;
+
+		} while (random != guess && i < 5);
+	}
+	
+	playGame();
+
+	var replay =playAgain();
+
+	if(replay) {
+		playGame();
+	}
+
+	//below if you want it to loop forever the playagain opiton.
+	//do{
+
+	// 	 playGame();
+
+	// 	 var replay = playAgain();
+
+	//} while(replay);
+	
+
+
+	</script>
+
+</body>
+</html>
