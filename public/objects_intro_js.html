@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		// var student= {};
+
+		// student.firstName='Justin';
+		// student.lastName='Woodford';
+
+		// student.sayHello = function() {
+		// 	console.log('Everyone say hello to ' + (student.firstName) + ' '+ (student.lastName))
+		// }
+
+		// student.middleName='Everitt'
+		
+		// student.sayHello2 = function(msg) {
+		// 	this.msg=msg;
+		// 	console.log('"Everyone say hello to ' + msg + ', '+ (this.firstName) +  ' ' +(this.middleName)+' '+ (this.lastName) + '."')
+		// }
+
+		var students= [{
+				firstName:'Justin',
+				lastName:'Woodford',
+				sayHello : function() {
+					//this.msg=msg;
+					console.log('"Everyone say hello to ' +','+' ' +(student.firstName) + ' ' (student.lastName))+'."'
+				},
+				grades: [
+					100, 98, 90, 96, 100, 76, 88, 100
+				]
+			},	{
+				firstName:'Julia',
+				lastName:'Flores',
+				sayHello : function() {
+					//this.msg=msg;
+					console.log('"Everyone say hello to ' + (student.firstName) + ' '+ (student.lastName))+'."' 
+				},
+				grades: [
+					100, 98, 90, 96, 100, 76, 88, 100
+				]
+			}];
+
+// students.sayHello=function sayHello(){
+// 	console.log('"Everyone say hello to ' + (students[0]) + ' '+ (students.lastName)+'."')
+// }
+
+// students.sayHello(1)
+///???? so i get undefined with students.firstName and with students.lastName?    also with student.firstName, etc. why???
+
+
+students.forEach(function (student, index, array) {
+	console.log(student.firstName + " " + student.lastName)
+});
+
+// students.forEach(function (student, index, array) {
+// 	var response = prompt('What is your name?');
+// 	alert("Hello, " +response "!")
+// });
+
+// ?????? Why can't I do an alert with anything other than text inside it??????
+
+
+// todo:
+// Create person object with firstName and lastName properties (set to your first and last name).
+// var person = todo;
+
+// todo:
+// Add a say hello method to the person object that alerts hello using the firstName and lastName properties.
+
+// Say hello from the person object.
+// person.sayHello();
+	</script>
+
+</body>
+</html>

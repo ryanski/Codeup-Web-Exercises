@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+			"use strict"
+			var student = {};
+
+			student['first-name']=’Will’;
+			student.lastName=’Swanter’;
+
+			student.sayHello=function(msg) {
+				this.msg= msg;
+
+				console.log(this['first-name'] + ‘ ‘ + this.lastName + ‘ says “Hi everybody!”’);
+			}
+	</script>
+
+</body>
+</html>

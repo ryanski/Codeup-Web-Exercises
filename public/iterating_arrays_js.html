@@ -13,18 +13,69 @@
 </head>
 <body>
 	<script>
-		var names=["Jessie", "Kris", "Cristina", "Masha"];
-		console.log(names.length);
-		for (i=0; i<names.length; i++){
-		console.log(names[i]);
-		}
+		 var names=["Jessie", "Kris", "Cristina", "Masha"];
+		// console.log(names.length);
+		// for (i=0; i<names.length; i++){
+		// console.log(names[i]);
+		// }
 		// console.log(names[0]);
 		// console.log(names[1]);
 		// console.log(names[2]);
 		// console.log(names[3]);
 
+		// for (i=0; i<names.length; i++){
+		// 	console.log('The name at index '+ index + element);
+		// };
+		//
 
+		names.forEach(function(element, index, array) {
+			console.log('The name at index ' +index + ' is ' +element);
+		});
 
+		// function iterateNames(element, index, array){
+		// 	console.log('The name at index ' +index+ ' is ' +element);
+		// }
+
+		// names.forEach(iterateNames);
+
+		var shapes = ['octogon', 'sphere', 'square', 'rectangel'];
+		shapes.push('circle');
+		shapes.forEach(function(shape, index, array) {
+			console.log('The shape at index ' + index + ' is ' + shape);
+		});
+
+		var tacos =['chorizo', 'picadillo', 'guacamole', 'norteno', 'barbacoa', 'fajita', '99 cent', 'not a real taco from taco bell', 'lengua'];
+
+		tacos.forEach(function(taco, index){ //element than index
+			console.log('we have some really good ' + taco + ' tacos in San Antonio');
+		});
+
+		//stick with anonymous function.
+
+		var greetings = [];
+
+		names.forEach(function (element, index, array){
+			greetings[index] = 'Hi there, ' +element;
+		});
+
+		greetings.forEach(function (element, index, array) {
+			console.log('The value "element" ' + element + ' is at index ' + index + ' which is the same as ' + array[index])
+		});
+
+		var tacos = ['picadillo', 'lengua', 'barbacoa', 'guacamole'];
+
+		tacos.forEach(function (taco, index, array) {
+			if(index>0) {
+				console.log('The last taco I ate was a ' +array[index-1]);
+			}
+
+			console.log('I am eating a ' + taco + ' taco');
+
+			if(index< array.length -1) {
+				console.log('I will eat a ' + array[index + 1] + ' taco next');
+			}
+			console.log('yum');
+		});
 
 
 
