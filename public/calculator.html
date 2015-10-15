@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="css/calculator_css.css">
+	<link href="css/calculator_css.css" rel="stylesheet">
+</head>
+<body>
+	<input type= 'text' id='textarea_1' readonly>
+	<input type= 'text' id='textarea_2' readonly>
+	<input type= 'text' id='textarea_3'readonly><br>
+	<button id= 'clearbutt' data-value='C'>C</button>
+	<button class='CalcNumBut'data-value='1'>1</button>
+	<button class='CalcNumBut'data-value='2'>2</button>
+	<button class='CalcOpBut'data-value='+'>+</button><br>
+	<button class='CalcNumBut'data-value='3'>3</button>
+	<button class='CalcNumBut'data-value='4'>4</button>
+	<button class='CalcNumBut'data-value='5'>5</button>
+	<button class='CalcOpBut'data-value='-'>-</button><br>
+	<button class='CalcNumBut'data-value='6'>6</button>
+	<button class='CalcNumBut'data-value='7'>7</button>
+	<button class='CalcNumBut'data-value='8'>8</button>
+	<button class='CalcOpBut'data-value='*'>*</button><br>
+	<button class='CalcNumBut'data-value='9'>9</button>
+	<button class='CalcNumBut'data-value='0'>0</button>
+	<button id= 'equal' data-value='='>=</button>
+	<button class='CalcOpBut'data-value='/'>/</button><br>
+	<button id= 'decimal' class='CalcNumBut' data-value='.'>.</button>
+	<button data-value='%'>%</button>
+	<button data-value='Power'>^</button>
+	<button data-value='SqRt'>SqRt</button>
+
+
+    <script>
+    	"use strict";
+    	//(function() {
+	
+		var box1= document.getElementById('textarea_1');
+	
+		var box2= document.getElementById('textarea_2');
+
+		var box3= document.getElementById('textarea_3');
+
+        var numButts= document.getElementsByClassName('CalcNumBut');
+
+        var opButts= document.getElementsByClassName('CalcOpBut')
+
+        var clearButts= document.getElementById('clearbutt')
+
+        var equalButts= document.getElementById('equal')
+
+        var decButts= document.getElementById('decimal')
+
+        var allButts= document.getElementsByTagName('button')
+
+        	
+
+        function numberPlacement (event) {
+        	if(document.getElementById('textarea_2').value == '') {
+        		box1.value += this.getAttribute('data-value');
+        		
+        	} else {
+        		box3.value += this.getAttribute('data-value');
+        		
+        	}  
+        } 
+
+        for(var i=0; i<numButts.length; i++) {
+        	numButts[i].addEventListener('click', numberPlacement);
+        }
+
+        function operatorPlacement (event) {
+        	box2.value = this.getAttribute('data-value');
+        }
+
+        for(var i=0; i<opButts.length; i++) {
+        	opButts[i].addEventListener('click', operatorPlacement);
+        }
+
+        function clearbutts (event) {
+        	
+        	textarea_1.value='';
+        	textarea_2.value='';
+        	textarea_3.value='';
+        	document.getElementById('decimal').disabled=false;
+
+        }
+
+        clearButts.addEventListener('click', clearbutts)
+
+        function equal (event) {
+        	var solution;
+       		if(document.getElementById('textarea_2').value=='+') {
+       			solution = parseFloat(box1.value) + parseFloat(box3.value)
+       			box1.value=solution	
+       		} else if 
+       			(document.getElementById('textarea_2').value=='-') {
+       		 	solution = parseFloat(box1.value) - parseFloat(box3.value)
+       			box1.value=solution       			
+       		} else if 
+       			(document.getElementById('textarea_2').value=='/') {
+       			solution = parseFloat(box1.value) / parseFloat(box3.value)
+       			box1.value=solution
+       		} else {
+       			(document.getElementById('textarea_2').value=='*') 
+       			solution = parseFloat(box1.value) * parseFloat(box3.value)
+       			box1.value=solution
+       		}
+       		textarea_2.value='';
+       		textarea_3.value='';
+       		
+        }
+
+         equalButts.addEventListener('click', equal)
+
+
+        function noRepeat(event) {
+        	if (box1.value.indexOf('.')!= -1){
+        	document.getElementById('decimal').disabled=true
+        	}
+        	if (box2.value== '+' || box2.value== '-' || box2.value== '*' || box2.value== '/'){
+        	document.getElementById('decimal').disabled=false
+        	}
+        	if (box3.value.indexOf('.')!= -1){
+        	document.getElementById('decimal').disabled=true
+        	}
+    	}
+
+        for (var x=0; x<allButts.length; x++) {
+        	allButts[x].addEventListener('click', noRepeat);
+        }
+        
+
+        
+        function decimalchecker (event) {
+        if(box1.value.indexOf('.')!=-1) {
+        	getElementById('decimal').disabled=true;
+
+        }}
+	//})();
+
+	</script>
+</body>
+</html>

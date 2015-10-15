@@ -1,0 +1,39 @@
+.CalcNumBut {
+	background-color: blue;
+}
+#clearbutt {
+	background-color: orange;
+}
+
+body {
+	margin: 50px;
+	margin-left: 500px ;
+	background-image: url(/img/calculator_bg.img);
+}
+
+button {
+	background-color: red;
+	width: 80px;
+	height: 80px;
+	font-size: 24px;
+	/*transition: ;
+	background: radial gradient (circle, red 20%, #ccc);*/
+
+}
+
+
+}
+#textarea_1, #textarea_3 {
+	background-color: papayawhip;
+}
+
+
+#textarea_1, #textarea_2, #textarea_3 {
+	width: 100px;
+	height: 60px;
+	border: 2px solid black;
+	font-size: 24px;
+	overflow-x: scroll;
+}
+
+

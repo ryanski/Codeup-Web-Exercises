@@ -9,7 +9,7 @@
     <button id="defuser">Defuse the BOM</button>
 
     <script>
-        var detonationTimer = 5;
+        var detonationTimer = 10;
 
         // TODO: This function needs to be called once every second
         function updateTimer()
