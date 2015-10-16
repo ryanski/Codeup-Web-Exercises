@@ -67,15 +67,19 @@
 
 	<script src='/js/jquery-1.11.3.min.js'></script>
 	<script>
-        $('#faq').click(function(event) {
-			$('dd').toggleClass('invisible');
-		});
+  //       $('#faq').click(function(event) {
+		// 	$('dd').toggleClass('invisible');
+		// });
+			$('#faq').click(function(event) {
+		 	$('dd').fadeIn();
+		 });
+
 		//traversing
 		$('ul').each(function(index) {
 			$(this).children().first().css('font-weight', 'bold');
 		});
-		$('li').click(function(event) {
-			$(this).parent().toggleClass('invisible');
+		$('h2').click(function(event) {
+			$('li').parent().fadeToggle();
 		});
 
 		
