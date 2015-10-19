@@ -26,13 +26,12 @@
             zoom: 18,
 
             // This sets the center of the map at our location
-            center: {
-                lat:  29.4284595,
-                lng: -98.492433
-            },
+            //center: {
+            //    lat:  29.4284595,
+            //    lng: -98.492433
+            //}, 
             mapTypeId: google.maps.MapTypeId.SATELLITE
 
-            var codeup = { lat: 29.428459, lng: -98.492433 };
 
      
 
@@ -42,7 +41,7 @@
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
                 // Set our address to geocode
-        var address = "300 Alamo Plaza, San Antonio, TX, 78205";
+        var address = "999 E. BASSE RD. SAN ANTONIO, TX 78209";
 
         // Init geocoder object
         var geocoder = new google.maps.Geocoder();
@@ -61,9 +60,22 @@
                alert("Geocoding was not successful - STATUS: " + status);
                // Add the marker to our existing map
         // Create lat and long for our marker position
-        
         }
-   }
+            console.log(results);
+            var marker = new google.maps.Marker({
+                 position: results[0].geometry.location,
+                 map: map
+
+            });
+            // Create a new infoWindow object with content
+            var infowindow = new google.maps.InfoWindow({
+                content: "Torchy's Tacos is in San Antonio."
+            });
+
+            // Open the window using our map and marker
+            infowindow.open(map, marker);
+                
+               });
 
    
 
