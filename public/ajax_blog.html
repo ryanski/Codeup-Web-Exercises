@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- <button type="button" id="update_blog" class="btn btn-primary btn-lg glyphicon glyphicon-flash">Update</button> -->
+	<div id="posts"></div>
+	<div></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+		(function() {
+			function refresh () {
+			$.ajax("/data/blog.json").done(function(blog_post) {
+			console.log(blog_post);
+			blog_post.forEach(function(blog_parts) {
+				var post="<p>";
+				post+="<h2>"+blog_parts.title+"</h2>";
+				post+="<p>"+blog_parts.content+"</p>";
+				post+="<p>"+blog_parts.date+"</p>";
+				post+="<p>"+blog_parts.categories+"</p>";
+				post+="</p>"
+				$("#posts").append(post);
+			});
+			)
+			// $("#update_blog").click(function(event) {
+			// 	function(blog_post)
+		});
+	})();
+
+	</script>
+</body>
+</html>

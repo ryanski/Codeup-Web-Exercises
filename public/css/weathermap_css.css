@@ -1,0 +1,17 @@
+.needscapitals {
+	text-transform: capitalize
+}
+
+body { padding-top: 70px; }
+
+#FirstCity {
+	background-color: blue
+}
+
+#SecondCity {
+	background-color: red
+}
+
+#ThirdCity {
+	background-color: green
+}

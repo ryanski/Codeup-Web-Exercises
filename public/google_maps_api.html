@@ -17,8 +17,10 @@
 
     <!-- Script to show address on map -->
     <script type="text/javascript">
+
     (function() {
         "use strict";
+        
 
         // Set our map options
         var mapOptions = {
@@ -41,7 +43,7 @@
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
                 // Set our address to geocode
-        var address = "999 E. BASSE RD. SAN ANTONIO, TX 78209";
+        var address = "2801 GUADALUPE ST. AUSTIN, TX 78705";
 
         // Init geocoder object
         var geocoder = new google.maps.Geocoder();
@@ -69,7 +71,9 @@
             });
             // Create a new infoWindow object with content
             var infowindow = new google.maps.InfoWindow({
-                content: "Torchy's Tacos is in San Antonio."
+                content: "<h3>I used to live above the Torchy's Tacos at UT.</h3><h4>I recommend the Fried Avocado Taco</h4><ul><li>Hand Battered Fried Fresh Avocados</li><li>Vegetarian Refried Beans</li><li>Pico, Lettuce, and Cheese</li><li>Poblano sauce on a Corn Tortilla</li></ul>"
+                
+                
             });
 
             // Open the window using our map and marker
