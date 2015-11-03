@@ -5,13 +5,18 @@
 body { padding-top: 70px; }
 
 #FirstCity {
-	background-color: blue
+	background-color: papayawhip
 }
 
 #SecondCity {
-	background-color: red
+	background-color: lightslategray
 }
 
 #ThirdCity {
-	background-color: green
+	background-color: lightsalmon
 }
+
+ #map-canvas {
+            width: 800px;
+            height: 600px;
+        }

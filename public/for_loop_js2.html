@@ -5,10 +5,60 @@
 </head>
 <body>
 	<script>
-		for (var i=100; i>=5; i=i-5) {
-			console.log(i);
+		// for (var i=100; i>=5; i=i-5) {
+		// 	console.log(i);
+		// }
+			//if there are any beers
+			//n "bottles of beer on wall.. take down and pass it around"
+			//if there is only one beer
+			//"1 bottle of beer on the wall"
+			//if there are no bottles
+			//"someone needs to go to the store"
+		// for (var i=99; i>=1; i=i-1) {
+		// 	if(i>1) {
+		// 		console.log(i+" bottles of beer on wall.  Take one down and pass it around.")
+			
+		// 	} else {
+		// 		console.log(i+" bottle of beer on the wall.  Take it down and pass it around.")
+			
+		// 	}
+		// }
+		for (var i = 100; i > 1; i-=2) {
+    		console.log(i+" bottles of beer on wall.  Take one down and pass it around.");
+			}
+
+			// } else  {
+			// 	console.log("Someone needs to go to the store.")
+			// }
+		for (var i = 1; i < 100; i++) {
+
+	    if (i % 2 == 0) {
+	        // number isn't even
+	        // odd numbers aren't as cool
+	        // skip the rest of the loop and continue with the next iteration
+	        continue;
+	    }
+
+	    console.log('Here is a lovely even number: ' + i);
 		}
-	</script>
+
+	    var i=1;
+
+	    do {
+	    	
+	    	console.log(i)
+	    	++i;
+	    } while (i<100);
+
+	    var i = 10;
+
+		do {
+		    console.log('while loop iteration #' + i);
+		    i--;
+		} while (i >= 0);
+			
+
+	</script>	
 
 </body>
 </html>
