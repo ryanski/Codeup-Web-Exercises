@@ -1,32 +1,102 @@
 <?php
-$a=2;
-$b=3;
-function add($a, $b)
+function validate($a, $b) 
 {
-    return $a + $b;
+	if (is_numeric($a) && is_numeric($b)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function errormessage($a, $b)
+{
+	if(validate($a, $b))
+	{	
+		return true;
+	} else {
+		return "Error: Both need to be numbers.";
+	}
+
+
+}
+function add($a, $b)
+{	
+	$isValid=errormessage($a,$b);
+	if($isValid === true)
+	{	
+		return $a + $b;
+	} else {
+		return $isValid;
+	}
+   
+		
 }
 
 function subtract($a, $b)
 {
-    return $a - $b;
+    $isValid=errormessage($a,$b);
+	if($isValid === true)
+	{	
+		return $a - $b;
+	} else {
+		return $isValid;
+	}
+   
 }
 
 function multiply($a, $b)
 {
-    return $a * $b;
+	  $isValid=errormessage($a,$b);
+	if($isValid === true)
+	{	
+		return $a * $b;
+	} else {
+		return $isValid;
+	}
 }
 
 function divide($a, $b)
 {
-    return $a / $b;
+      $isValid=errormessage($a,$b);
+    if($b==0){
+    	return "Error: We can't divide by zero.";
+    }
+	if($isValid === true)
+	{	
+		return $a / $b;
+	} else {
+		return $isValid;
+	}
 }
 
 function modulus($a, $b)
 {
+	if($b==0){
+    	return "Error: We can't modulus by zero.";
+    }
 	return $a%$b;
 }
-echo add($a,$b).PHP_EOL;
-echo subtract($a,$b).PHP_EOL;
-echo multiply($a,$b).PHP_EOL;
-echo divide($a,$b).PHP_EOL;
-echo modulus($a,$b).PHP_EOL;
+
+function multbyadd($a, $b)
+ {	
+	$sum=0;
+	for($i=0; $i<$b; $i++){
+		$sum=$sum+$a;
+		
+	 } return $sum;
+	
+	
+// above works.
+ 
+
+}
+echo add(2,7).PHP_EOL;
+echo subtract("a",7).PHP_EOL;
+echo multiply("a",7).PHP_EOL;
+echo multiply(2,7).PHP_EOL;
+echo divide(2,0).PHP_EOL;
+echo divide(2,7).PHP_EOL;
+echo modulus(2,7).PHP_EOL;
+echo multbyadd(2,7).PHP_EOL;
+
