@@ -4,25 +4,15 @@ function validate($a, $b)
 	if (is_numeric($a) && is_numeric($b)) {
         return true;
     } else {
-        return false;
+        return "Error: Both need to be numbers.";
     }
 
 }
 
-function errormessage($a, $b)
-{
-	if(validate($a, $b))
-	{	
-		return true;
-	} else {
-		return "Error: Both need to be numbers.";
-	}
 
-
-}
 function add($a, $b)
 {	
-	$isValid=errormessage($a,$b);
+	$isValid=validate($a,$b);
 	if($isValid === true)
 	{	
 		return $a + $b;
@@ -35,7 +25,7 @@ function add($a, $b)
 
 function subtract($a, $b)
 {
-    $isValid=errormessage($a,$b);
+    $isValid=validate($a,$b);
 	if($isValid === true)
 	{	
 		return $a - $b;
@@ -47,7 +37,7 @@ function subtract($a, $b)
 
 function multiply($a, $b)
 {
-	  $isValid=errormessage($a,$b);
+	  $isValid=validate($a,$b);
 	if($isValid === true)
 	{	
 		return $a * $b;
@@ -58,7 +48,7 @@ function multiply($a, $b)
 
 function divide($a, $b)
 {
-      $isValid=errormessage($a,$b);
+      $isValid=validate($a,$b);
     if($b==0){
     	return "Error: We can't divide by zero.";
     }
@@ -72,10 +62,16 @@ function divide($a, $b)
 
 function modulus($a, $b)
 {
-	if($b==0){
+	$isValid=validate($a,$b);
+    if($b==0){
     	return "Error: We can't modulus by zero.";
     }
-	return $a%$b;
+	if($isValid === true)
+	{	
+		return $a % $b;
+	} else {
+		return $isValid;
+	}
 }
 
 function multbyadd($a, $b)
@@ -87,11 +83,11 @@ function multbyadd($a, $b)
 	 } return $sum;
 	
 	
-// above works.
+// above works. or i=1; i<=b.
  
 
 }
-echo add(2,7).PHP_EOL;
+echo add("a",7).PHP_EOL;
 echo subtract("a",7).PHP_EOL;
 echo multiply("a",7).PHP_EOL;
 echo multiply(2,7).PHP_EOL;
