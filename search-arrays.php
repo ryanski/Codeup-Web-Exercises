@@ -26,6 +26,12 @@ function isInarray ($person, $array)
 $result=isInarray('Tinas', $names);
 var_dump($result);
 
+$result=isInarray('Tina', $names);
+var_dump($result);
+
+$result=isInarray('Bob', $names);
+var_dump($result);
+
 
 $i=0;
 foreach($names as $name){
