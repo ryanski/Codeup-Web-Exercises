@@ -2,18 +2,19 @@
 
 class Log
 {
-	public $filename='';
+	public $filename;
+	public $handle;
 
 
+	public function __construct($prefix='log') {
+			$date=date('Y-m-d');
+			$this->filename =$prefix."-$date.log";
+	}
 	public function logMessage($logLevel, $message)
 	{
 
-		$date=date('Y-m-d');
-		$this->filename = "$date.log";
-		$handle = fopen($this->filename, 'a');
-		$content=fwrite($handle, PHP_EOL . date('h:i:s A'.PHP_EOL)." ".$logLevel." ".$message);
-			
-		fclose($handle);
+		$this->handle = fopen($this->filename, 'a');
+		$content=fwrite($this->handle, PHP_EOL . date('h:i:s A'.PHP_EOL)." ".$logLevel." ".$message);
 		return $content.PHP_EOL;
 	}
 
@@ -25,6 +26,13 @@ class Log
 	public function logError($message)
 	{
 		$this->logMessage("[ERROR]", $message);
+
+	}
+
+	public function __destruct()
+	{
+		fclose($this->handle);
+		echo "echo ECHO ECHO";
 	}
 
 	// logInfo("This is an info message.");
