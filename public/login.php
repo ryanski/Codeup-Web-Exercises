@@ -1,5 +1,7 @@
 <?php
+require_once '../Auth.php';
 require 'functions.php';
+$hashpash = password_hash('password', PASSWORD_DEFAULT);
 $message= '';
 
 session_start();
@@ -22,16 +24,17 @@ $password='';
 	$username = inputGet('username');
 	$password = inputGet('password');
 
-	if($username=='guest' && $password=='password'){
-		$_SESSION["LOGGED_IN_USER"]=$username;
-		header('location:authorized.php');
-		die();
-	} elseif ($username!=''){
+	// if($username=='guest' && $password=='password'){
+	// 	$_SESSION["LOGGED_IN_USER"]=$username;
+	// 	header('location:authorized.php');
+	// 	die();
+	// } elseif ($username!=''){
 	
-		$failedlogin=true;
+	// 	$failedlogin=true;
 		
-	}
+	// }
 
+Auth::attempt($username, $password, $hashpash);
 
 
 ?>
@@ -45,7 +48,7 @@ $password='';
 	<p><?php echo $username; ?></p>
 	<h2>Number</h2>
 	<form method="POST">
-		<p><?= escape($username); ?></p>
+		<p><?= escape($username.$hashpash); ?></p>
 		<!-- Session Id: <?php echo $sessionId; ?><br>
     	View Count: <?php echo $viewCount; ?><br><br> -->
 		<label for "username">User name</label>

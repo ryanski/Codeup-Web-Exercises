@@ -1,8 +1,9 @@
 <?php
-require 'functions.php';
+require_once '../Input.php';
+// require 'functions.php';
 function pageController()
 {
-	$counter = inputGet('key');
+	$counter = Input::get('key');
 	// $counter = isset($_GET['key']) ? $_GET['key']: 0;
 	
 
