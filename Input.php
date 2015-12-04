@@ -8,6 +8,15 @@ class Input
      * @param string $key index to look for in request
      * @return boolean whether value exists in $_POST or $_GET
      */
+
+    public static function notEmpty($key)
+    {
+        if(isset($_REQUEST[$key]) && $_REQUEST[$key] !=''){
+            return true;
+        }
+    }
+
+
     public static function has($key)
     {
         if(isset($_REQUEST[$key])) {

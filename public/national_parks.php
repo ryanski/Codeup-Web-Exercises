@@ -24,6 +24,39 @@ $stmt = $dbc->query($selectAll);
 
 $parks = $stmt->FetchAll(PDO::FETCH_ASSOC);
 
+function insertPark($dbc,$park)
+{
+	$name = Input::get('name');
+	$location = Input::get('location');
+	$date_established = Input::get('date_established');
+	$area = Input::get('area');
+	$visitors = Input::get('visitors');
+	$description = Input::get('description');
+
+	$query = "INSERT INTO national_parks (name, location, date_established, area, visitors, description)
+				VALUES (:name, :location, :date_established, :area, :visitors, :description)";
+	$query=$dbc->prepare($query);
+	$query->bindValue(':name', $name, PDO::PARAM_STR);
+	$query->bindValue(':location', $location, PDO::PARAM_STR);
+	$query->bindValue(':date_established', $date_established, PDO::PARAM_STR);
+	$query->bindValue(':area', $area, PDO::PARAM_STR);
+	$query->bindValue(':visitors', $visitors, PDO::PARAM_STR);
+	$query->bindValue(':description', $description, PDO::PARAM_STR);
+	// $query->fetchAll(PDO::FETCH_ASSOC);
+	$query->execute();
+			
+}
+
+var_dump($_POST);
+
+
+if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('date_established') &&
+	Input::notEmpty('area') && Input::notEmpty('visitors') && Input::notEmpty('description'))
+	{
+		insertPark($dbc,$parks);
+	}
+
+
 // var_dump($parks)
 
 ?>
@@ -63,11 +96,39 @@ $parks = $stmt->FetchAll(PDO::FETCH_ASSOC);
 	</table>
 	<?php 
 		if(isset($_GET['page']) && $_GET['page'] !=1) { ?>
-			<a id = "previous" href="national_parks.php?page=<?=$page-1?>">Previous
+			<a id = "previous" href="national_parks.php?page=<?=$page-1?>"/>Previous</a>
 		<?php } ?>
 	<?php
 		if(!isset($_GET['page']) || $_GET['page'] <15) { ?>
-			<a id = "next" href="national_parks.php?page=<?=$page+1?>">Next
+			<a id = "next" href="national_parks.php?page=<?=$page+1?>">Next</a>
 		<?php }?>
+	<form method="POST">
+		<p>
+			<label for "name">Name:</label><br>
+			<input type="text" id= "name" name='name'>
+		</p>
+		<p>	
+			<label for "location">Location:</label><br>
+		 	<input type="text" id="location" name='location'>
+		</p>
+		<p>
+			<label for "date_established">Date Established</label><br>
+			<input type="text" id= "date_established" name='date_established'>
+		</p>
+		<p>	
+			<label for "area">Area</label><br>
+		 	<input type="text" id="area" name='area'>
+		</p>
+		<p>
+			<label for "visitors">Visitors</label><br>
+			<input type="text" id= "visitors" name='visitors'>
+		</p>
+		<p>	
+			<label for "description">Description</label><br>
+		 	<input type="text" id="description" name='description'>
+		</p>
+		<p>
+			<input type="submit">
+		</p>
 
 </body>

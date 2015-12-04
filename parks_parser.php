@@ -23,12 +23,12 @@ function parseParks($filename)
 		// $infoArray[6] = substr_replace($info_array[6], replacement, start) 
 		//next line is saying you are pushing info(associative array) into newArray.  
 		$parksArray[]=[
-			'Name' => htmlspecialchars(substr($infoArray[0],1)),
-			'Location' => $infoArray[2],
-			'Date Established' => $infoArray[3],
-			'Area' => $infoArray[4],
-			'Recreation Visitors' => $infoArray[5],
-			'Description' => substr($infoArray[6],0,-1)
+			'name' => htmlspecialchars(substr($infoArray[0],1)),
+			'location' => $infoArray[2],
+			'date_established' => $infoArray[3],
+			'area' => $infoArray[4],
+			'recreation_visitors' => $infoArray[5],
+			'description' => substr($infoArray[6],0,-1)
 			];
 	}
 

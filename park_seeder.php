@@ -25,19 +25,36 @@ require 'parks_parser.php';
 
 // ];
 
-foreach ($parksArray as $park) {
-    $query = "INSERT INTO national_parks
+
+ $query = "INSERT INTO national_parks
      (name, location, date_established, area, visitors, description)
       VALUES (
-      	'{$park['Name']}', 
-      	'{$park['Location']}',
-		'{$park['Date Established']}',
-    	'{$park['Area']}',
-    	'{$park['Recreation Visitors']}',
-    	\"{$park['Description']}\"
+      	:name, 
+      	:location,
+		:date_established,
+    	:area,
+    	:recreation_visitors,
+    	:description
     )";
 
-	$dbc->exec($query);
+$stmt = $dbc->prepare($query);
+
+foreach ($parksArray as $park) {
+   
+    
+
+	
+	$stmt->bindValue(':name', $park['name'], PDO::PARAM_STR);
+	$stmt->bindValue(':location', $park['location'], PDO::PARAM_STR);
+	$stmt->bindValue(':date_established', $park['date_established'], PDO::PARAM_STR);
+	$stmt->bindValue(':area', $park['area'], PDO::PARAM_STR);
+	$stmt->bindValue(':recreation_visitors', $park['recreation_visitors'], PDO::PARAM_STR);
+	$stmt->bindValue(':description', $park['description'], PDO::PARAM_STR);
+	$stmt->execute();
+
+	// print_r($stmt->fetch(PDO::FETCH_ASSOC));
+	
+
 }
 
    
