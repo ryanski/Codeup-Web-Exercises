@@ -2,13 +2,13 @@
 
 class Log
 {
-	public $filename;
-	public $handle;
+	protected $filename;
+	protected $handle;
 
 
 	public function __construct($prefix='log') {
 			$date=date('Y-m-d');
-			$this->filename =$prefix."-$date.log";
+			$this->setfilename =$prefix."-$date.log";
 	}
 	public function logMessage($logLevel, $message)
 	{
