@@ -15,14 +15,14 @@ echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 $dbc->exec('DROP TABLE IF EXISTS national_parks');
 
 $query = "CREATE TABLE national_parks (
-	ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(500) NOT NULL,
 	location VARCHAR(500) DEFAULT 'NONE',
 	date_established VARCHAR(500),
 	area VARCHAR(500),
 	visitors VARCHAR(500),
 	description TEXT,
-	PRIMARY KEY (ID)
+	PRIMARY KEY (id)
 	)";
 
 $dbc->exec($query);

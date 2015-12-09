@@ -25,13 +25,13 @@ class User extends Model
 
 // var_dump(User::all());
 
-// var_dump(User::find(7));
+var_dump(User::find(7));
 
-// $p = User::find(6);
+$p = User::find(6);
 
-// echo $p->name.PHP_EOL;
+echo $p->name.PHP_EOL;
 
-// var_dump($p);
+var_dump($p);
 
 
 // var_dump($p);
@@ -44,6 +44,17 @@ $newPark->date_established = 'A billion years ago';
 $newPark->visitors = 'Less than a dozen';
 var_dump($newPark);
 $newPark->save();
+
+// $newPark->insert();
+
+// $Park=User::find(7);
+
+// $Park->location='Jupiter';
+// $Park->visitors='1';
+
+// $Park->save();
+
+
 
 // $park = User::find(7);
 // $park->name= 'new name';

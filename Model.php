@@ -22,14 +22,12 @@ class Model
      */
     private static function dbConnect()
     {
-        if (!self::$dbc)
-        {
-            
-            self::$dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+        if (!isset(static::$dbc)) {
+            require 'db_connect.php';
 
-            self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // @TODO: Connect to database
+            static::$dbc = $dbc;
+           
+             // @TODO: Connect to database
             //if $dbc is not conneccted, connect it and save it as $dbc.
             // self::$dbc = $dbc;
             var_dump('you are connected');
@@ -59,25 +57,53 @@ class Model
     {
         // @TODO: Ensure there are attributes before attempting to save
         //    // @TODO: Perform the proper action - if the `id` is set, this is an update, if not it is a insert
-        // if(!empty($this->attributes))
-        // {
-        //         if(isset($this->attributes['id']) {
-        //             if($this->update($this->attributes['id']));
-        //         } else {
-        //             $this->insert();
-        //         }
-        //     }
+        if(!empty($this->attributes))
+        {
+            if(isset($this->attributes['id'])) {
+                $this->update($this->attributes['id']);
+            } else {
+                    $this->insert();
+            }
+        }
+            
+    }
+
+
+        
+           
+
+        
         // }
 
+            
 
-           $table = static::$table;
+            // var_dump($values);
 
-           self::dbConnect();
-           // if($this->attributes['id']){
-            // $id = $this->attributes['ID'];
-            //this gets attributes from the object.
-            // unset($this->attributes['ID']);
-            // takes id out and saves so id is not in mysql query, which will happpen below. 
+            // var_dump($query);
+
+        
+        // if($attributes['id'] = $value) {
+        //     $value = "INSERT INTO users (email, name) VALUES ()";
+        // }
+
+        //do update last
+        // @TODO: Ensure that update is properly handled with the id key
+
+        // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
+
+        // @TODO: You will need to iterate through all the attributes to build the prepared query
+
+        // @TODO: Use prepared statements to ensure data security
+    // }
+
+    /*
+     * Find a record based on an id
+     */
+
+    protected function insert() {
+        $table = static::$table;
+
+           self::dbConnect(); 
 
             $columnNames = array_keys($this->attributes);
             $colonKey = [];
@@ -96,10 +122,7 @@ class Model
 
             // var_dump(implode(', ', $columnNames));
 
-        
-           
-            
-           $query = "INSERT INTO $table
+        $query = "INSERT INTO $table
                              ($columnNames) VALUES ($colonKey);";
            $stmt = self::$dbc->prepare($query);
 
@@ -109,55 +132,48 @@ class Model
                 }
     
             $stmt->execute();
+             var_dump($stmt);
 
-            // var_dump($query);
-            var_dump($stmt);
-
-            // $this->attributes['ID']=$id;
-        // }
-
-            
-
-            // var_dump($values);
-
-            // var_dump($query);
-
-        //    $stmt = prepare($query)
-        //                       VALUES (
-        //                         :name, 
-        //                         :location,
-        //                         :date_established,
-        //                         :area,
-        //                         :recreation_visitors,
-        //                         :description
-        //                     );
-        //     $stmt->bindValue(':name', $park['name'], PDO::PARAM_STR);
-        //     $stmt->bindValue(':location', $park['location'], PDO::PARAM_STR);
-        //     $stmt->bindValue(':date_established', $park['date_established'], PDO::PARAM_STR);
-        //     $stmt->bindValue(':area', $park['area'], PDO::PARAM_STR);
-        //     $stmt->bindValue(':recreation_visitors', $park['recreation_visitors'], PDO::PARAM_STR);
-        //     $stmt->bindValue(':description', $park['description'], PDO::PARAM_STR);
-        //     $stmt->execute();
-        // }
-
-        
-        // if($attributes['id'] = $value) {
-        //     $value = "INSERT INTO users (email, name) VALUES ()";
-        // }
-
-        //do update last
-        // @TODO: Ensure that update is properly handled with the id key
-
-        // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
-
-        // @TODO: You will need to iterate through all the attributes to build the prepared query
-
-        // @TODO: Use prepared statements to ensure data security
     }
 
-    /*
-     * Find a record based on an id
-     */
+    public function update($id) 
+    {
+        $table = static::$table;
+
+           self::dbConnect();
+          
+
+            //this gets attributes from the object.
+            unset($this->attributes['id']);
+            //takes id out and saves so id is not in mysql query, which will happpen below.
+
+            $updateArray=[];
+            foreach($this->attributes as $key=>$value){
+                $update= $key .' = :'.$key;
+                array_push($updateArray, $update);
+            }
+            var_dump($updateArray);
+            $updateString = implode(', ', $updateArray);
+            var_dump($updateString);
+
+
+
+
+
+            //update $table set
+            //   column = :column
+            // where key = :key
+            $this->attributes['id'] = $id;
+            $stmt = self::$dbc->prepare("UPDATE ".$table." SET ".$updateString." WHERE id = :id");
+
+            
+            foreach($this->attributes as $key=>$value){
+                $stmt->bindValue(':'.$key, $value, PDO::PARAM_STR);
+            }
+
+            var_dump($stmt);
+            $stmt->execute();
+    }
 
     public static function find($id)
     {
@@ -208,9 +224,7 @@ class Model
         }
         return $instance;
 
-        // function __get($name)
-        // return foreach($name);
-
+      
     }
 
 
@@ -220,4 +234,3 @@ class Model
     // }
 }
 
-// $dbc = new Model();
