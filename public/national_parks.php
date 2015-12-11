@@ -6,22 +6,42 @@ require_once '../sql/db_connect.php';
 require '../Input.php';
 
 $errorsArray=[];
+
+function getPageNumber($dbc) 
+{
+	$query=$dbc->prepare('SELECT * FROM national_parks');
+	$query->execute();
+	$rowNumber=$query->rowCount();
+	return $rowNumber;
+ 
+}
+ $rowNumber=getPageNumber($dbc);
+ 
+
+// var_dump(getPageNumber($dbc));
+
+$maxPage=$rowNumber/6;
+var_dump($maxPage);
+$maxPage=ceil($maxPage);
+var_dump($maxPage);
+
 //round make sure it rounds when decimals are entered into page=''.
  $page = Input::has('page') ? round(Input::get('page')) : 1;
 //this gets it to return back to start page when non numeric characters are entered or page <1 or >15.  So it won't break.
-if(isset($_GET['page']) && (($_GET['page']>25 || $_GET['page']<1) || !is_numeric($_GET['page']))){
+if(isset($_GET['page']) && (($_GET['page']>$maxPage || $_GET['page']<1) || !is_numeric($_GET['page']))){
 	header('location: national_parks.php');
 	die();
 }
 
- $offset=(($page-1)*4);
+$offset=(($page-1)*6);
 
-
-$selectAll = 'SELECT * FROM national_parks LIMIT 4 OFFSET '.$offset;
+$selectAll = 'SELECT * FROM national_parks LIMIT 6 OFFSET '.$offset;
 
 $stmt = $dbc->query($selectAll);
 
 $parks = $stmt->FetchAll(PDO::FETCH_ASSOC);
+
+
 
 function insertPark($dbc,$park)
 {	$errorsArray=[];
@@ -160,7 +180,7 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 			<a id = "previous" href="national_parks.php?page=<?=$page-1?>"/>Previous</a>
 		<?php } ?>
 	<?php
-		if(!isset($_GET['page']) || $_GET['page'] <25) { ?>
+		if(!isset($_GET['page']) || $_GET['page'] <$maxPage) { ?>
 			<a id = "next" href="national_parks.php?page=<?=$page+1?>">Next</a>
 		<?php }?>
 		<?php foreach($errorsArray as $error): ?>
@@ -198,6 +218,7 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 		<p>
 			<label for "name">Park to Delete</label<br>
 			 <option selected="selected"></option>
+			 <option value=>biology</option>
 			<input type="text" id="delete_park" name='delete_park'>
 		</p>
 		<p> 

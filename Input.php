@@ -42,18 +42,32 @@ class Input
     return null;
     }
 
-    public static function getString($key) 
-    {
-        if(!is_string(self::get($key))){
-             throw new Exception('$key must be a string!');
+    public static function getString($key, $min=0, $max=100) 
+    {   !$min='';
+        $value=self::get($key);
+        if(!is_string($value)){
+            throw new DomainException ("Your input, $key, must be a string.");
+        } elseif(empty($value)){
+            throw new OutOfRangeException ("Your input, $key, was nothing.");
+        } elseif(strlen($value)<$min){
+            throw new LengthException ("Your input, $key, was too short.");
+        } elseif(strlen($value)>$max) {
+            throw new LengthException ("Your input, $key, was too long.");
         } 
         return ($_REQUEST[$key]);
     }
 
-    public static function getNumber($key)
+    public static function getNumber($key, $min=0, $max=100)
     {
-        if(!is_numeric(self::get($key))){
-            throw new Exception('$key must be a numeric!');
+        $value=self::get($key);
+        if(!is_numeric($value)){
+            throw new InvalidArgumentException("Your input, $key, must be numeric!");
+        } elseif(empty($value)){
+            throw new OutOfRangeException ("Your input, $key, was nothing.");
+        } elseif($value<$min) {
+            throw new RangeException ("Your input, $key, is too small.");
+        } elseif($value>$max) {
+            throw new RangeException ("Your input, $key, is too big.");
         }
         return ((float)$_REQUEST[$key]);
     }
@@ -69,7 +83,7 @@ class Input
 
         //top option allows 'tomorrow' as input and puts in right date.
         //bottom option doesn't. also the bottom option requires the month day, year format only.
-        
+
         // $date=DateTime::createFromFormat('M j, Y', self::get($key));
         // if($date){
         //     return $date->format('M j, Y');
