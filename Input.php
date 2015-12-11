@@ -36,10 +36,47 @@ class Input
      */
     public static function get($key, $default = null)
     {
-        if (Input::has($key)) {
+        if (self::has($key)) {
         return ($_REQUEST[$key]);
     }
     return null;
+    }
+
+    public static function getString($key) 
+    {
+        if(!is_string(self::get($key))){
+             throw new Exception('$key must be a string!');
+        } 
+        return ($_REQUEST[$key]);
+    }
+
+    public static function getNumber($key)
+    {
+        if(!is_numeric(self::get($key))){
+            throw new Exception('$key must be a numeric!');
+        }
+        return ((float)$_REQUEST[$key]);
+    }
+
+    public static function getDate($key)
+    {
+        $input=self::get($key);
+        if(!strtotime($input)){
+            throw new Exception('$key must be a date!');
+        } else {
+            return date('M j, Y', strtotime($input));
+        }
+
+        //top option allows 'tomorrow' as input and puts in right date.
+        //bottom option doesn't. also the bottom option requires the month day, year format only.
+        
+        // $date=DateTime::createFromFormat('M j, Y', self::get($key));
+        // if($date){
+        //     return $date->format('M j, Y');
+        // } else {
+        //     throw new Exception('$key must be a date!');
+        // }
+        
     }
         // TODO: Fill in this function
 

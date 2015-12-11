@@ -5,12 +5,11 @@ require_once '../sql/db_connect.php';
 
 require '../Input.php';
 
-
+$errorsArray=[];
 //round make sure it rounds when decimals are entered into page=''.
  $page = Input::has('page') ? round(Input::get('page')) : 1;
-
 //this gets it to return back to start page when non numeric characters are entered or page <1 or >15.  So it won't break.
-if(isset($_GET['page']) && (($_GET['page']>15 || $_GET['page']<1) || !is_numeric($_GET['page']))){
+if(isset($_GET['page']) && (($_GET['page']>25 || $_GET['page']<1) || !is_numeric($_GET['page']))){
 	header('location: national_parks.php');
 	die();
 }
@@ -25,13 +24,53 @@ $stmt = $dbc->query($selectAll);
 $parks = $stmt->FetchAll(PDO::FETCH_ASSOC);
 
 function insertPark($dbc,$park)
-{
-	$name = Input::get('name');
-	$location = Input::get('location');
-	$date_established = Input::get('date_established');
-	$area = Input::get('area');
-	$visitors = Input::get('visitors');
-	$description = Input::get('description');
+{	$errorsArray=[];
+	try {
+		$name = Input::getString('name');
+	} catch(Exception $e) {
+		$error=$e->getMessage();
+		array_push($errorsArray, $error);
+	}
+
+	try {
+		$location = Input::getString('location');
+	} catch(Exception $e) {
+		$error=$e->getMessage();
+		array_push($errorsArray, $error);
+	}
+
+	try{
+		$date_established = Input::getDate('date_established');
+	} catch(Exception $e) {
+		$error=$e->getMessage();
+		array_push($errorsArray, $error);
+	}
+
+	try{
+		$area = Input::getNumber('area');
+	} catch(Exception $e) {
+			$error=$e->getMessage();
+			array_push($errorsArray, $error);
+		}
+
+	try{
+		$visitors = Input::getString('visitors');
+	} catch(Exception $e) {
+			$error=$e->getMessage();
+			array_push($errorsArray, $error);
+		}
+
+	try{
+		$description = Input::getString('description');
+	} catch(Exception $e) {
+			$error=$e->getMessage();
+			array_push($errorsArray, $error);
+		}
+
+	if(!empty($errorsArray))
+	{
+		return $errorsArray;
+	}
 
 	$query = "INSERT INTO national_parks (name, location, date_established, area, visitors, description)
 				VALUES (:name, :location, :date_established, :area, :visitors, :description)";
@@ -47,14 +86,36 @@ function insertPark($dbc,$park)
 			
 }
 
+function deletePark($dbc) 
+{
+	$errorsArray=[];
+	try{
+		$delete_park = Input::getNumber('delete_park'); 
+	}catch(Exception $e){
+		$error = $e->getMessage();
+		array_push($errorsArray, $error);
+	}
+	$query = "DELETE FROM national_parks WHERE id = :delete_park"; 
+	$query=$dbc->prepare($query);
+	$query->bindValue(':delete_park', $delete_park, PDO::PARAM_INT);
+	$query->execute();
+
+	return $errorsArray;
+}
+
 var_dump($_POST);
 
 
 if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('date_established') &&
 	Input::notEmpty('area') && Input::notEmpty('visitors') && Input::notEmpty('description'))
 	{
-		insertPark($dbc,$parks);
+		var_dump($errorsArray);
+		$errorsArray=insertPark($dbc,$parks);
+	} elseif(Input::notEmpty('delete_park')){
+		$errorsArray=deletePark($dbc);
 	}
+	var_dump($errorsArray);
+	
 
 
 // var_dump($parks)
@@ -99,9 +160,12 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 			<a id = "previous" href="national_parks.php?page=<?=$page-1?>"/>Previous</a>
 		<?php } ?>
 	<?php
-		if(!isset($_GET['page']) || $_GET['page'] <15) { ?>
+		if(!isset($_GET['page']) || $_GET['page'] <25) { ?>
 			<a id = "next" href="national_parks.php?page=<?=$page+1?>">Next</a>
 		<?php }?>
+		<?php foreach($errorsArray as $error): ?>
+			<p><?= $error; ?></p>
+		<?php endforeach; ?>
 	<form method="POST">
 		<p>
 			<label for "name">Name:</label><br>
@@ -128,6 +192,15 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 		 	<input type="text" id="description" name='description'>
 		</p>
 		<p>
+			<input type="submit">
+		</p>
+	<form method="POST">
+		<p>
+			<label for "name">Park to Delete</label<br>
+			 <option selected="selected"></option>
+			<input type="text" id="delete_park" name='delete_park'>
+		</p>
+		<p> 
 			<input type="submit">
 		</p>
 
