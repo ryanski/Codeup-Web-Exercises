@@ -138,9 +138,26 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 	
 
 
-// var_dump($parks)
+var_dump($parks);
 
 ?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	"use strict";
+
+	$(".deletePark").click(function(a) {
+		var parkName = $(this).data('name');
+		var parkId = $(this).data('id');
+
+		if(confirm("Are you sure you want to delete "+parkName+"?")){
+			$("#delete-id").val(parkId);
+			$("#delete-form").submit();
+		}
+	});
+})();
+</script>
+
 
 <link rel="stylesheet" href='/css/parks_css.css'/>
 <link rel="stylesheet" href='/css/unsemantic_master/assets/stylesheets/unsemantic-grid-responsive-tablet.css'/>
@@ -152,6 +169,10 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 </head>
 <body>
 <?= "You are on page number $page"; ?>
+
+<form method="post" id="delete-form">
+	<input type="hidden" name='id' id="delete-id">
+</form>
 	<h2>National Parks</h2>
 	<h3>My First Database Driven Web Application</h3>
 	<table class="grid_container">
@@ -172,6 +193,7 @@ if(Input::notEmpty('name') && Input::notEmpty('location') && Input::notEmpty('da
 			<td><?= $parksArray['area'] ?></td>
 			<td><?= $parksArray['visitors'] ?></td>
 			<td><?= $parksArray['description'] ?></td>
+			<td class='deletePark'>Delete</td>
 		</tr>
 		<?php } ?>			
 	</table>
